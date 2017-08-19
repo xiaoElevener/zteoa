@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+ <!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+<struts>
+	<constant name="struts.i18n.encoding" value="UTF-8"></constant>
+	<constant name="struts.devMode" value="true"></constant>
+	<package name="default" namespace="/" extends="struts-default" >
+		
+		<action name="UserAction_*" class="com.ncu.oa.common.action.UserAction" method="{1}">
+			<result name="login">/login.html</result>
+			<result name="index">/alterInfo.jsp</result>
+			<result type="redirect" name="logout">/login.html</result>
+			<result name="password">/alterPassword.jsp</result>
+			<result name="success" type="chain">
+				<param name="actionName">UserAction_logout</param>
+				<param name="namespace">/</param>
+			</result>
+		</action>
+		<action name="department_*" class="com.ncu.oa.common.action.DepartmentAction" method="{1}"></action>
+		<action name="role_*" class="com.ncu.oa.common.action.RoleAction" method="{1}"></action>
+		<action name="contacts_*" class="com.ncu.oa.common.action.ContactsAction" method="{1}"></action>
+		<action name="attendance_*" class="com.ncu.oa.common.action.AttendanceAction" method="{1}"></action>
+		<action name="schedule_*" class="com.ncu.oa.common.action.ScheduleAction" method="{1}"></action>
+		<action name="chaim_*" class="com.ncu.oa.common.action.ChaimAction" method="{1}">
+			<!-- 用户查看对应表格的详情请假表 报销表 加班表 -->
+			<result name="showLeaveForm">/showLeaveForm.jsp</result>
+			<result name="showExpenseForm">/showExpenseForm.jsp</result>
+			<result name="showOvertimeForm">/showOvertimeForm.jsp</result>
+			<!-- 相关权限人员对相关审批单进行审批，对不同审批单跳转到不同页面 -->
+			<result name="checkLeaveForm">checkLeaveForm.jsp</result>
+			<result name="checkExpenseForm">checkExpenseForm.jsp</result>
+			<result name="checkOvertimeForm">checkOvertimeForm.jsp</result>
+			<result name="checkList">showNeedToCheckRequest.jsp</result>
+			<result name="myChaimList">showMyRequest.jsp</result>
+		</action>
+		<action name="userFamily_*" class="com.ncu.oa.common.action.UserFamilyAction" method="{1}"></action>
+		<action name="userHistory_*" class="com.ncu.oa.common.action.UserHistoryAction" method="{1}"></action>
+	</package>
+</struts>
+	

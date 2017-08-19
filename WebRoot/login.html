@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		 <meta charset="utf-8">
+	    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+	    <meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta charset="UTF-8">
+		<title>OA系统登陆页面</title>
+		<link rel="stylesheet" type="text/css" href="css/bootstrap.css"/>
+		<link rel="stylesheet" type="text/css" href="css/bootstrap-theme.css"/>
+		<script src="js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/bootstrap.js" type="text/javascript" charset="utf-8"></script>
+		
+	</head>
+	<body>
+		<!--使用模态框的方式模拟一个登陆框-->
+		<div class="modal show" id="loginModal">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header"> <button type="button" class="close">×</button>
+						<h1 class="text-center text-primary">ZTEOA系统</h1> </div>
+					<div class="modal-body">
+						<form class="form col-md-12 center-block" id="loginForm" action="UserAction_login" method="post">
+							<div class="form-group-lg" id="accountDiv"> <label class="sr-only" for="inputAccount">账号</label>
+								<div class="input-group">
+									<div class="input-group-addon"><span class="glyphicon glyphicon-user" aria-hidden="true"></span></div> <input class="form-control" id="inputAccount" name="user.userId" type="text" placeholder="工号" required autofocus> </div>
+								<div class="hidden text-center" id="accountMsg"><span class="glyphicon glyphicon-exclamation-sign"></span>用户名不存在</div>
+							</div> <br>
+							<div class="form-group-lg" id="pwdDiv"> <label class="sr-only" for="inputPassword">密码</label>
+								<div class="input-group">
+									<div class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></div> <input class="form-control" id="inputPassword" name="user.userPassword" type="password" placeholder="密码" required>
+									<div class="input-group-addon"><span class="glyphicon glyphicon-eye-open"></span></div>
+								</div>
+								<div class="hidden text-center" id="pwdMsg"><span class="glyphicon glyphicon-exclamation-sign"></span>用户名密码错误</div>
+							</div>
+							<div class="checkbox"> <label> <input type="checkbox" value="remember-me">记住我</label> </div>
+							<div class="form-group"> <button class="btn btn-primary btn-lg col-md-10 col-md-offset-1" id="btn_login" type="submit">登录</button> </div>
+						</form>
+					</div>
+					<div class="modal-footer"> </div>
+				</div>
+			</div>
+		</div>
+		
+		
+		
+		
+	</body>
+</html>

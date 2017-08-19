@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://www.springframework.org/schema/beans" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop" xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.2.xsd 
+							http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.2.xsd 
+							http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.2.xsd 
+							http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.2.xsd ">
+
+
+	<bean id="logLnterceptor" class="com.ncu.oa.common.log.LogInterceptor" />
+	<!-- Spring 统一异常处理 ExceptionAdvisor配置 -->
+	<bean id="exceptionHandler" class="com.ncu.oa.common.log.ExceptionAdvisor" />
+
+
+	<!-- Bean自动代理处理器 配置 -->
+	<bean
+		class="org.springframework.aop.framework.autoproxy.BeanNameAutoProxyCreator">
+		<property name="beanNames">
+			<list>    <!-- 配置需要进行日志记录的Service和Dao -->
+				<value>*Dao</value>
+				<!-- 配置所有Service结尾命名的Bean，即所有Service层的类都要经过exceptionHandler异常处理类 -->
+				<value>*Service</value>  <!-- Service层的Bean ID 命名要以Service结尾 -->
+			</list>
+		</property>
+		<property name="interceptorNames">
+			<list>
+				<value>exceptionHandler</value>
+				<value>logLnterceptor</value>
+			</list>
+		</property>
+	</bean>
+</beans>
